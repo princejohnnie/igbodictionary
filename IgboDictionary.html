@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <style>
+     body {
+        background-color: #064b204b;
+     }
+     .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+     }
+     </style>
+     
+</head>
+</head>
+<body>
+    <div class="container">
+    <div class="search-box">
+   </style> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+ <head>    
+
+</body>
+   <div class="ui grid center aligned">
+     <div class="sixteen wide column">
+        <div class="ui category search">
+            <div class="ui icon input search-bar">
+                
+<body>
+    <div class="search">
+        <input type="search" name="word" id="word">
+        <button class="btn-search">Search</button>
+    </div>
+    <div id="results"></div>
+    <form>
+            <input type="button" value="Clear" id="clear"/>
+        
+    </form>
+  </body>
+
+    </div>
+            
+    </form>
+            
+</div>
+      <script>
+    jQuery(document).ready(function($) {
+        $("#clear").click(function () {
+            $("#results").empty();
+            $("#word").val("");
+        })
+        $(".btn-search").click(function () {
+            var input = $("#word").val();
+            $("#results").empty();
+            $.ajaxSetup({
+                beforeSend(jq) {
+                    jq.setRequestHeader("X-API-Key", "dd4b9bcf-9f99-4f65-baa7-86ff7d811ab1")
+                    
+                    
+                }
+            });
+            $.get(`https://igboapi.com/api/v1/words?keyword=${input}`, function(data, status){
+                let result = data;
+                for (let i = 0; i <= result.length; i++) {
+                    if (result[i]) {
+                        $("#results").append(
+                        `<div>
+                            <h2>Word: ${result[i].word}</h2>
+                            <p>Definitions: ${result[i].definitions}</p>
+                            <audio controls>
+                            <source src="${result[i].pronunciation}" type="audio/mp3">
+                            </audio>
+                        </div>`
+            
+            
+                        )
+                    }
+                }
+            });
+        })
+    });
+
+
+</script>
+</body>
+</html>
+  
